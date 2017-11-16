@@ -58,8 +58,10 @@ if __name__ == "__main__":
         sys.exit(1)
     door_name = sys.argv[1]
     door = taurus.Device(door_name)
-    door.runMacro("senv GeneralHooks {'my-hook-place':'MyHook1'}",
+    door.runMacro("senv GeneralHooks [('MyHook1' ['my-hook-place'])]",
                   synch=True)
+#     door.runMacro("senv GeneralHooks {'my-hook-place':'MyHook1'}",
+#                   synch=True)
     xml = lxml.etree.fromstring(XML)
     door.runMacro(xml, synch=True)
     door.runMacro("MyMacroWrapper", synch=True)
